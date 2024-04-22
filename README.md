@@ -10,3 +10,10 @@ the second guest, and what is localhost:5672 is for? <br>
 3. Simulation slow subscriber
 ![slow subscriber](img/slow.png)
 Berbeda dengan ketika dieksekusi tanpa sleep, terlihat bahwa terdapat spike yang menyentuh angka 6 pada grafik queued message di atas. Hal ini terjadi karena ketika saya menjalankan 2 perintah `cargo run` dengan cepat pada publisher sehingga terdapat 6 pesan yang dikirim perlu dimasukkan ke queue terlebih dahulu.
+
+4. Reflection and Running at least three subscribers
+![multiple subscribers](img/mult_sub.png)
+![rabbitmq](img/rabbit_mq.png)
+Pada gambar pertama, terlihat bahwa terdapat 3 subscriber yang dijalankan. Dan ketika saya melakukan hal yang sama seperti pada poin nomor 3, yaitu menjalankan 2 perintah `cargo run` dengan cepat, semua pesan yang dikirim dibagi eksekusinya ke 3 subscriber tersebut. Hal ini mengakibatkan grafik yang dihasilkan seperti pada gambar 2. Meskipun dieksekusi dengan sleep, dapat dilihat dari grafik queued messages, sekarang tidak ada message yang masuk ke queue. Hal ini terjadi karena message telah dieksekusi oleh 3 subscriber berbeda sehingga message tidak perlu lagi mengantri di queue untuk dieksekusi.
+
+
